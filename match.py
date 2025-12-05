@@ -2,6 +2,7 @@ from classdef import Country,Group,Game
 from winprob import sim_game_penalty,sim_game
 from round_of_32 import ROUND_OF_32_COMBINATIONS
 from draw import ic_po_draw,uefa_po_draw,worldcup_gs_draw
+from draw_real import ic_po_real,uefa_po_real,worldcup_gs_real
 
 def sim_po(ic_path:list[Group], uefa_path:list[Group], verbose=False):
     """플레이오프 시뮬레이션"""
@@ -1518,6 +1519,7 @@ def sim_final(teams:list[Country], verbose=True):
     return [winner,loser,game]
 
 def complete_sim(teams:list[Country], verbose=False, view_by_group=0):
+    """PO 조 추첨부터 완전 시뮬레이션"""
     ic_path = ic_po_draw(teams,verbose)
     for path in ic_path:
         path.name = 'ICPO ' + path.name
@@ -1529,6 +1531,91 @@ def complete_sim(teams:list[Country], verbose=False, view_by_group=0):
 
     # 월드컵 조별예선 추첨 시뮬레이션
     wc_groups = worldcup_gs_draw(teams,uefa_path,ic_path,verbose)
+
+    # 대륙 PO / UEFA PO 시뮬레이션 (동시 진행)
+    po_winner = sim_po(ic_path,uefa_path,verbose)
+
+    # PO 결과를 월드컵 조에 이식
+    for g in wc_groups:
+        for idx,t in enumerate(g.teams):
+            if type(t) == Group:
+                for w in po_winner:
+                    if w in t.teams:
+                        g.teams[idx] = w
+                        break
+
+    # 월드컵 조별예선 시뮬레이션
+    gs_res = sim_worldcup_gs(wc_groups,verbose,view_by_group)
+    
+    # 월드컵 결선 토너먼트 시뮬레이션
+    ro32_res = sim_ro32(gs_res[0],gs_res[1],gs_res[2],gs_res[4],verbose)
+    ro16_res = sim_ro16(ro32_res[0],verbose)
+    qf_res = sim_qf(ro16_res[0],verbose)
+    sf_res = sim_sf(qf_res[0],verbose)
+    bf_res = sim_bf(sf_res[1],verbose)
+    final_res = sim_final(sf_res[0],verbose)
+    
+    # 함수 반환값은 최종순위(PO 탈락팀 제외) + 본선 시합
+    total_games = gs_res[5]+ro32_res[2]+ro16_res[2]+qf_res[2]+sf_res[2]
+    total_games.append(bf_res[2])
+    total_games.append(final_res[2])
+    teams_rank = []
+    # 1~4위는 결승전/동메달결정전으로 결정
+    teams_rank.append(final_res[0])
+    teams_rank.append(final_res[1])
+    teams_rank.append(bf_res[0])
+    teams_rank.append(bf_res[1])
+    
+    # 8강 이하 나열 순서: 승점 > 득실차 > 다득점 > 피파랭킹
+    def rank_teams(teams:list[Country]):
+        """최종 순위 계산법"""
+        rank_table = [[0,0,0,0] for _ in range(len(teams))]
+        for t in teams:
+            for idx,t in enumerate(teams):
+                rank_table[idx][3] = t.elo
+                games = find_all_games(t,total_games)
+                for g in games:
+                    if t.name == g.home.name:
+                        rank_table[idx][1] += g.score_home - g.score_away
+                        rank_table[idx][2] += g.score_home
+                        if g.score_home > g.score_away:
+                            rank_table[idx][0] += 3
+                        elif g.score_home == g.score_away:
+                            rank_table[idx][0] += 1
+                    elif t.name == g.away.name:
+                        rank_table[idx][1] += g.score_away - g.score_home
+                        rank_table[idx][2] += g.score_away
+                        if g.score_home < g.score_away:
+                            rank_table[idx][0] += 3
+                        elif g.score_home == g.score_away:
+                            rank_table[idx][0] += 1
+        rank = sorted(range(len(rank_table)),key=lambda i: rank_table[i],reverse=True)
+        res:list[Country] = []
+        for r in rank:
+            res.append(teams[r])
+        return res
+    
+    # 8강 탈락팀 순위비교
+    teams_rank += rank_teams(qf_res[1])
+    # 16강 탈락팀 순위비교
+    teams_rank += rank_teams(ro16_res[1])
+    # 32강 탈락팀 순위비교
+    teams_rank += rank_teams(ro32_res[1])
+    
+    # 조별리그 탈락팀 순위비교
+    noadv_group = list(range(12))
+    for idx in gs_res[4]:
+        noadv_group.remove(idx)
+    noadv_teams = [gs_res[2][i] for i in noadv_group] + gs_res[3]
+    teams_rank += rank_teams(noadv_teams)
+    
+    return [teams_rank,total_games]
+
+def sim_after_draw(teams:list[Country], verbose=False, view_by_group=0):
+    """현실 조 추첨 결과에서 시작"""
+    ic_path = ic_po_real(teams)
+    uefa_path = uefa_po_real(teams)
+    wc_groups = worldcup_gs_real(teams,uefa_path,ic_path)
 
     # 대륙 PO / UEFA PO 시뮬레이션 (동시 진행)
     po_winner = sim_po(ic_path,uefa_path,verbose)
