@@ -238,7 +238,7 @@ def worldcup_gs_draw(teams:list[Country], uefa_po, ic_po, verbose=False):
                  'Australia',       # AFC GroupC2
                  'Qatar',           # AFC POGSA1
                  'Saudi Arabia',    # AFC POGSB1
-                 'New Zealand',     # OFC FQWinner
+                 'New Zealand'      # OFC FQWinner
     ]
     sorted = []
     for name in qualified:

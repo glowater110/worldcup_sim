@@ -96,48 +96,48 @@ verbose = False
 #         repeat = False
 
 # N번 실행 시 한국의 성적 분포
-n = 10000
-ranks = [0 for _ in range(8)]
-total_time = 0
-for _ in range(n):
-    start_time = time.perf_counter()
-    res = sim_after_draw(teams,verbose,1)
-    end_time = time.perf_counter()
-    print(f'Simulation {_+1} : Executed in {end_time-start_time:.1f} seconds')
-    total_time += end_time-start_time
-    # 한국 팀의 결과
-    kor = find_team(teams, 'Korea Republic')
-    rank = res[0].index(kor)+1
-    # if rank <= 4:
-    #     print('')
-    #     print('📊 Korea Republic Games')
-    #     for g in find_all_games(kor,res[1]):
-    #         print(g)
-    print(f'Ranking : {rank}')
-    if rank <= 4:
-        ranks[rank-1] += 1
-    elif rank <= 8:
-        ranks[4] += 1
-    elif rank <= 16:
-        ranks[5] += 1
-    elif rank <= 32:
-        ranks[6] += 1
-    else:
-        ranks[7] += 1
+# n = 10000
+# ranks = [0 for _ in range(8)]
+# total_time = 0
+# for _ in range(n):
+#     start_time = time.perf_counter()
+#     res = sim_after_draw(teams,verbose,1)
+#     end_time = time.perf_counter()
+#     print(f'Simulation {_+1} : Executed in {end_time-start_time:.1f} seconds')
+#     total_time += end_time-start_time
+#     # 한국 팀의 결과
+#     kor = find_team(teams, 'Korea Republic')
+#     rank = res[0].index(kor)+1
+#     # if rank <= 4:
+#     #     print('')
+#     #     print('📊 Korea Republic Games')
+#     #     for g in find_all_games(kor,res[1]):
+#     #         print(g)
+#     print(f'Ranking : {rank}')
+#     if rank <= 4:
+#         ranks[rank-1] += 1
+#     elif rank <= 8:
+#         ranks[4] += 1
+#     elif rank <= 16:
+#         ranks[5] += 1
+#     elif rank <= 32:
+#         ranks[6] += 1
+#     else:
+#         ranks[7] += 1
 
-print('')
-print(f'Total Execute Time : {total_time:.1f}')
-print(f'Average Execute Time : {total_time/n:.1f}')
-print('')
-print(f'📊 Korea Republic Rank Statistics ({n} times)')
-print(f'🥇 1st Place : {ranks[0]}')
-print(f'🥈 2nd Place : {ranks[1]}')
-print(f'🥉 3rd Place : {ranks[2]}')
-print(f'🏅 4th Place : {ranks[3]}')
-print(f'✅ Quarterfinal : {ranks[4]}')
-print(f'✅ Round of 16 : {ranks[5]}')
-print(f'✅ Round of 32 : {ranks[6]}')
-print(f'✅ Group Stage : {ranks[7]}')
+# print('')
+# print(f'Total Execute Time : {total_time:.1f}')
+# print(f'Average Execute Time : {total_time/n:.1f}')
+# print('')
+# print(f'📊 Korea Republic Rank Statistics ({n} times)')
+# print(f'🥇 1st Place : {ranks[0]}')
+# print(f'🥈 2nd Place : {ranks[1]}')
+# print(f'🥉 3rd Place : {ranks[2]}')
+# print(f'🏅 4th Place : {ranks[3]}')
+# print(f'✅ Quarterfinal : {ranks[4]}')
+# print(f'✅ Round of 16 : {ranks[5]}')
+# print(f'✅ Round of 32 : {ranks[6]}')
+# print(f'✅ Group Stage : {ranks[7]}')
 
 # N번 실행 시 조 추첨 상대 결과
 # ic_path = ic_po_real(teams)
@@ -230,3 +230,63 @@ print(f'✅ Group Stage : {ranks[7]}')
 #     print(f'🏳️  {t} - {count[idx]}')
 #     if idx % 12 == 11:
 #         print('')
+
+# N번 실행 시 모든 국가의 성적 분포
+n = 10000
+ranks = [0 for _ in range(8)]
+total_time = 0
+team_list = ['Canada','Mexico','USA','Spain','Argentina','France','England','Brazil','Portugal','Netherlands','Belgium','Germany',
+             'Croatia','Morocco','Colombia','Uruguay','Switzerland','Japan','Senegal','IR Iran','Korea Republic','Ecuador','Austria','Australia',
+             'Norway','Panama','Egypt','Algeria','Scotland','Paraguay','Tunisia','Côte d\'Ivoire','Uzbekistan','Qatar','Saudi Arabia','South Africa',
+             'Jordan','Cabo Verde','Ghana','Curaçao','Haiti','New Zealand',
+             'Italy','Wales','Bosnia and Herzegovina','Northern Ireland','Ukraine','Poland','Albania','Sweden','Türkiye','Slovakia','Kosovo','Romania','Denmark','Czechia','Republic of Ireland','North Macedonia',
+             'Congo DR','New Caledonia','Jamaica','Iraq','Bolivia','Suriname'
+]
+ranks = [[0 for _ in range(8)] for __ in range(len(team_list))]
+for idx,t in enumerate(team_list):
+    team_list[idx] = find_team(teams,t)
+    
+for _ in range(n):
+    start_time = time.perf_counter()
+    res = sim_after_draw(teams,verbose,1)
+    end_time = time.perf_counter()
+    print(f'Simulation {_+1} : Executed in {end_time-start_time:.1f} seconds')
+    total_time += end_time-start_time
+    for idx,t in enumerate(team_list):
+        try:
+            rank = res[0].index(t)+1
+            if rank <= 4:
+                ranks[idx][rank-1] += 1
+            elif rank <= 8:
+                ranks[idx][4] += 1
+            elif rank <= 16:
+                ranks[idx][5] += 1
+            elif rank <= 32:
+                ranks[idx][6] += 1
+            else:
+                ranks[idx][7] += 1
+        except:
+            pass
+
+print('')
+print(f'Total Execute Time : {total_time:.1f}')
+print(f'Average Execute Time : {total_time/n:.1f}')
+print('')
+print(f'📊 Rank Statistics ({n} times)')
+for idx,t in enumerate(team_list):
+    print('')
+    print(f'🏳️  {t}')
+    print(f'🥇 1st Place : {ranks[idx][0]}')
+    print(f'🥈 2nd Place : {ranks[idx][1]}')
+    print(f'🥉 3rd Place : {ranks[idx][2]}')
+    print(f'🏅 4th Place : {ranks[idx][3]}')
+    print(f'✅ Quarterfinal : {ranks[idx][4]}')
+    print(f'✅ Round of 16 : {ranks[idx][5]}')
+    print(f'✅ Round of 32 : {ranks[idx][6]}')
+    print(f'✅ Group Stage : {ranks[idx][7]}')
+
+top_winner = sorted(range(len(team_list)),key=lambda x: ranks[x],reverse=True)
+print('')
+print(f'📊 Most Possible Winner ({n} times)')
+for idx in top_winner:
+    print(f'🏳️  {team_list[idx]} : {ranks[idx][0]}')
