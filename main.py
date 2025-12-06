@@ -232,7 +232,7 @@ verbose = False
 #         print('')
 
 # N번 실행 시 모든 국가의 성적 분포
-n = 10000
+n = 100000
 ranks = [0 for _ in range(8)]
 total_time = 0
 team_list = ['Canada','Mexico','USA','Spain','Argentina','France','England','Brazil','Portugal','Netherlands','Belgium','Germany',
@@ -246,12 +246,15 @@ ranks = [[0 for _ in range(8)] for __ in range(len(team_list))]
 for idx,t in enumerate(team_list):
     team_list[idx] = find_team(teams,t)
     
-for _ in range(n):
+for i in range(n):
     start_time = time.perf_counter()
     res = sim_after_draw(teams,verbose,1)
     end_time = time.perf_counter()
-    print(f'Simulation {_+1} : Executed in {end_time-start_time:.1f} seconds')
     total_time += end_time-start_time
+    sys.stdout.write('\033[F\033[K')
+    print(f'Simulation {i+1} : Executed in {end_time-start_time:.1f} seconds')
+    rem_time = (n-i-1)*(total_time/(i+1))
+    print(f'Estimated Remaining Time : {int(rem_time/3600)} hour {int(rem_time/60)%60} min {rem_time%60:.1f} sec')
     for idx,t in enumerate(team_list):
         try:
             rank = res[0].index(t)+1
@@ -268,9 +271,10 @@ for _ in range(n):
         except:
             pass
 
+sys.stdout.write('\033[F\033[K')
 print('')
-print(f'Total Execute Time : {total_time:.1f}')
-print(f'Average Execute Time : {total_time/n:.1f}')
+print(f'Total Execute Time : {int(total_time/3600)} hour {int(total_time/60)%60} min {total_time%60:.1f} sec')
+print(f'Average Execute Time : {total_time/n:.1f} sec')
 print('')
 print(f'📊 Rank Statistics ({n} times)')
 for idx,t in enumerate(team_list):
