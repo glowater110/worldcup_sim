@@ -186,32 +186,32 @@ def sim_worldcup_gs(groups:list[Group], verbose=False, view_by_group=0):
         save_result(1,0,1)  # M3(B1vsB2)
         save_result(3,0,1)  # M4(D1vsD2)
         
-        # 2026-6-13 : M5(C1vsC2),M6(D3vsD4),M7(C3vsC4),M8(B3vsB4)
+        # 2026-6-13 : M5(C3vsC4),M6(D3vsD4),M7(C1vsC2),M8(B3vsB4)
         if verbose:
             print('')
             print('📅 June 13, 2026')
-        save_result(2,0,1)  # M5(C1vsC2)
-        save_result(3,2,3)  # M6(D3vsD4)
-        save_result(2,2,3)  # M7(C3vsC4)
         save_result(1,2,3)  # M8(B3vsB4)
+        save_result(2,0,1)  # M7(C1vsC2)
+        save_result(2,2,3)  # M5(C3vsC4)
+        save_result(3,2,3)  # M6(D3vsD4)
 
-        # 2026-6-14 : M9(E1vsE2),M10(E3vsE4),M11(F1vsF2),M12(F3vsF4)
+        # 2026-6-14 : M9(E3vsE4),M10(E1vsE2),M11(F1vsF2),M12(F3vsF4)
         if verbose:
             print('')
             print('📅 June 14, 2026')
-        save_result(4,0,1)  # M9(E1vsE2)
-        save_result(4,2,3)  # M10(E3vsE4)
+        save_result(4,0,1)  # M10(E1vsE2)
         save_result(5,0,1)  # M11(F1vsF2)
+        save_result(4,2,3)  # M9(E3vsE4)
         save_result(5,2,3)  # M12(F3vsF4)
         
-        # 2026-6-15 : M13(H1vsH2),M14(H3vsH4),M15(G1vsG2),M16(G3vsG4)
+        # 2026-6-15 : M13(H3vsH4),M14(H1vsH2),M15(G3vsG4),M16(G1vsG2)
         if verbose:
             print('')
             print('📅 June 15, 2026')
-        save_result(7,0,1)  # M13(H1vsH2)
-        save_result(7,2,3)  # M14(H3vsH4)
-        save_result(6,0,1)  # M15(G1vsG2)
-        save_result(6,2,3)  # M16(G3vsG4)
+        save_result(7,0,1)  # M14(H1vsH2)
+        save_result(6,0,1)  # M16(G1vsG2)
+        save_result(7,2,3)  # M13(H3vsH4)
+        save_result(6,2,3)  # M15(G3vsG4)
         
         # 2026-6-16 : M17(I1vsI2),M18(I3vsI4),M19(J1vsJ2),M20(J3vsJ4)
         if verbose:
@@ -222,13 +222,13 @@ def sim_worldcup_gs(groups:list[Group], verbose=False, view_by_group=0):
         save_result(9,0,1)  # M19(J1vsJ2)
         save_result(9,2,3)  # M20(J3vsJ4)
         
-        # 2026-6-17 : M21(L1vsL2),M22(L3vsL4),M23(K1vsK2),M24(K3vsK4)
+        # 2026-6-17 : M21(L3vsL4),M22(L1vsL2),M23(K1vsK2),M24(K3vsK4)
         if verbose:
             print('')
             print('📅 June 17, 2026')
-        save_result(11,0,1) # M21(L1vsL2)
-        save_result(11,2,3) # M22(L3vsL4)
         save_result(10,0,1) # M23(K1vsK2)
+        save_result(11,2,3) # M21(L3vsL4)
+        save_result(11,0,1) # M22(L1vsL2)
         save_result(10,2,3) # M24(K3vsK4)
     
     if view_by_group:
@@ -250,50 +250,50 @@ def sim_worldcup_gs(groups:list[Group], verbose=False, view_by_group=0):
         save_result(1,0,2)  # M27(B1vsB3)
         save_result(0,0,2)  # M28(A1vsA3)
         
-        # 2026-6-19 : M29(C4vsC2),M30(C1vsC3),M31(D4vsD2),M32(D1vsD3)
+        # 2026-6-19 : M29(C1vsC3),M30(C4vsC2),M31(D4vsD2),M32(D1vsD3)
         if verbose:
             print('')
             print('📅 June 19, 2026')
-        save_result(2,3,1)  # M29(C4vsC2)
-        save_result(2,0,2)  # M30(C1vsC3)
-        save_result(3,3,1)  # M31(D4vsD2)
         save_result(3,0,2)  # M32(D1vsD3)
+        save_result(2,3,1)  # M30(C4vsC2)
+        save_result(2,0,2)  # M29(C1vsC3)
+        save_result(3,3,1)  # M31(D4vsD2)
         
-        # 2026-6-20 : M33(E4vsE2),M34(E1vsE3),M35(F4vsF2),M36(F1vsF3)
+        # 2026-6-20 : M33(E1vsE3),M34(E4vsE2),M35(F1vsF3),M36(F4vsF2)
         if verbose:
             print('')
             print('📅 June 20, 2026')
-        save_result(4,3,1)  # M33(E4vsE2)
-        save_result(4,0,2)  # M34(E1vsE3)
-        save_result(5,3,1)  # M35(F4vsF2)
-        save_result(5,0,2)  # M36(F1vsF3)
+        save_result(5,0,2)  # M35(F1vsF3)
+        save_result(4,0,2)  # M33(E1vsE3)
+        save_result(4,3,1)  # M34(E4vsE2)
+        save_result(5,3,1)  # M36(F4vsF2)
         
-        # 2026-6-21 : M37(H4vsH2),M38(H1vsH3),M39(G4vsG2),M40(G1vsG3)
+        # 2026-6-21 : M37(H4vsH2),M38(H1vsH3),M39(G1vsG3),M40(G4vsG2)
         if verbose:
             print('')
             print('📅 June 21, 2026')
-        save_result(7,3,1)  # M37(H4vsH2)
         save_result(7,0,2)  # M38(H1vsH3)
-        save_result(8,3,1)  # M39(G4vsG2)
-        save_result(8,0,2)  # M40(G1vsG3)
+        save_result(8,0,2)  # M39(G1vsG3)
+        save_result(7,3,1)  # M37(H4vsH2)
+        save_result(8,3,1)  # M40(G4vsG2)
         
-        # 2026-6-22 : M41(I4vsI2),M42(I1vsI3),M43(J4vsJ2),M44(J1vsJ3)
+        # 2026-6-22 : M41(I4vsI2),M42(I1vsI3),M43(J1vsJ3),M44(J4vsJ2)
         if verbose:
             print('')
             print('📅 June 22, 2026')
-        save_result(8,3,1)  # M41(I4vsI2)
+        save_result(9,0,2)  # M43(J1vsJ3)
         save_result(8,0,2)  # M42(I1vsI3)
-        save_result(9,3,1)  # M43(J4vsJ2)
-        save_result(9,0,2)  # M44(J1vsJ3)
+        save_result(8,3,1)  # M41(I4vsI2)
+        save_result(9,3,1)  # M44(J4vsJ2)
         
-        # 2026-6-23 : M45(L4vsL2),M46(L1vsL3),M47(K4vsK2),M48(K1vsK3)
+        # 2026-6-23 : M45(L1vsL3),M46(L4vsL2),M47(K1vsK3),M48(K4vsK2)
         if verbose:
             print('')
             print('📅 June 23, 2026')
-        save_result(11,3,1) # M45(L4vsL2)
-        save_result(11,0,2) # M46(L1vsL3)
-        save_result(10,3,1) # M47(K4vsK2)
-        save_result(10,0,2) # M48(K1vsK3)
+        save_result(10,0,2) # M47(K1vsK3)
+        save_result(11,0,2) # M45(L1vsL3)
+        save_result(11,3,1) # M46(L4vsL2)
+        save_result(10,3,1) # M48(K4vsK2)
     
     if view_by_group:
         if verbose:
@@ -309,45 +309,45 @@ def sim_worldcup_gs(groups:list[Group], verbose=False, view_by_group=0):
         if verbose:
             print('')
             print('📅 June 24, 2026')
-        save_result(2,3,0)  # M49(C4vsC1)
-        save_result(2,1,2)  # M50(C2vsC3)
         save_result(1,3,0)  # M51(B4vsB1)
         save_result(1,1,2)  # M52(B2vsB3)
+        save_result(2,3,0)  # M49(C4vsC1)
+        save_result(2,1,2)  # M50(C2vsC3)
         save_result(0,3,0)  # M53(A4vsA1)
         save_result(0,1,2)  # M54(A2vsA3)
         
-        # 2026-6-25 : M55(E4vsE1),M56(E2vsE3),M57(F4vsF1),M58(F2vsF3),M59(D4vsD1),M60(D2vsD3)
+        # 2026-6-25 : M55(E2vsE3),M56(E4vsE1),M57(F2vsF3),M58(F4vsF1),M59(D4vsD1),M60(D2vsD3)
         if verbose:
             print('')
             print('📅 June 25, 2026')
-        save_result(4,3,0)  # M55(E4vsE1)
-        save_result(4,1,2)  # M56(E2vsE3)
-        save_result(5,3,0)  # M57(F4vsF1)
-        save_result(5,1,2)  # M58(F2vsF3)
+        save_result(4,1,2)  # M55(E2vsE3)
+        save_result(4,3,0)  # M56(E4vsE1)
+        save_result(5,1,2)  # M57(F2vsF3)
+        save_result(5,3,0)  # M58(F4vsF1)
         save_result(3,3,0)  # M59(D4vsD1)
         save_result(3,1,2)  # M60(D2vsD3)
         
-        # 2026-6-26 : M61(I4vsI1),M62(I2vsI3),M63(G4vsG1),M64(G2vsG3),M65(H4vsH1),M66(H2vsH3)
+        # 2026-6-26 : M61(I4vsI1),M62(I2vsI3),M63(G2vsG3),M64(G4vsG1),M65(H2vsH3),M66(H4vsH1)
         if verbose:
             print('')
             print('📅 June 26, 2026')
         save_result(8,3,0)  # M61(I4vsI1)
         save_result(8,1,2)  # M62(I2vsI3)
-        save_result(6,3,0)  # M63(G4vsG1)
-        save_result(6,1,2)  # M64(G2vsG3)
-        save_result(7,3,0)  # M65(H4vsH1)
-        save_result(7,1,2)  # M66(H2vsH3)
+        save_result(7,1,2)  # M65(H2vsH3)
+        save_result(7,3,0)  # M66(H4vsH1)
+        save_result(6,1,2)  # M63(G2vsG3)
+        save_result(6,3,0)  # M64(G4vsG1)
         
-        # 2026-6-27 : M67(L4vsL1),M68(L2vsL3),M69(J4vsJ1),M70(J2vsJ3),M71(K4vsK1),M72(K2vsK3)
+        # 2026-6-27 : M67(L4vsL1),M68(L2vsL3),M69(J2vsJ3),M70(J4vsJ1),M71(K4vsK1),M72(K2vsK3)
         if verbose:
             print('')
             print('📅 June 27, 2026')
         save_result(11,3,0) # M67(L4vsL1)
         save_result(11,1,2) # M68(L2vsL3)
-        save_result(9,3,0)  # M69(J4vsJ1)
-        save_result(9,1,2)  # M70(J2vsJ3)
         save_result(10,3,0) # M71(K4vsK1)
         save_result(10,1,2) # M72(K2vsK3)
+        save_result(9,1,2)  # M69(J2vsJ3)
+        save_result(9,3,0)  # M70(J4vsJ1)
     
     # 성적 순서대로 정렬
     # 정렬 순서 : 승점 -> 동률팀간 경기 승점 -> 동률팀간 경기 골득실 -> 동률팀간 경기 다득점
@@ -1145,18 +1145,18 @@ def sim_ro32(rank1:list[Country], rank2:list[Country], rank3:list[Country], rank
     if verbose:
         print('')
         print('📅 June 29, 2026')
+    save_result('Round of 32',rank1[i('C')],rank2[i('F')])      # M76(C1vsF2)
     idx = i(qualifying_set['1E'])
     save_result('Round of 32',rank1[i('E')],rank3[idx])         # M74(E1vsA3/B3/C3/D3/F3)
     save_result('Round of 32',rank1[i('F')],rank2[i('C')])      # M75(F1vsC2)
-    save_result('Round of 32',rank1[i('C')],rank2[i('F')])      # M76(C1vsF2)
     
     # June 30, 2026
     if verbose:
         print('')
         print('📅 June 30, 2026')
+    save_result('Round of 32',rank2[i('E')],rank2[i('I')])      # M78(E2vsI2)
     idx = i(qualifying_set['1I'])
     save_result('Round of 32',rank1[i('I')],rank3[idx])         # M77(I1vsC3/D3/F3/G3/H3)
-    save_result('Round of 32',rank2[i('E')],rank2[i('I')])      # M78(E2vsI2)
     idx = i(qualifying_set['1A'])
     save_result('Round of 32',rank1[i('A')],rank3[idx])         # M79(A1vsC3/E3/F3/H3/I3)
     
@@ -1166,28 +1166,28 @@ def sim_ro32(rank1:list[Country], rank2:list[Country], rank3:list[Country], rank
         print('📅 July 1, 2026')
     idx = i(qualifying_set['1L'])
     save_result('Round of 32',rank1[i('L')],rank3[idx])         # M80(L1vsE3/H3/I3/J3/K3)
+    idx = i(qualifying_set['1G'])
+    save_result('Round of 32',rank1[i('G')],rank3[idx])         # M82(G1vsA3/E3/H3/I3/J3)
     idx = i(qualifying_set['1D'])
     save_result('Round of 32',rank1[i('D')],rank3[idx])         # M81(D1vsB3/E3/F3/I3/J3)
-    idx = i(qualifying_set['1G'])
-    save_result('Round of 32',rank1[i('G')],rank3[idx])        # M82(G1vsA3/E3/H3/I3/J3)
     
     # July 2, 2026
     if verbose:
         print('')
         print('📅 July 2, 2026')
-    save_result('Round of 32',rank2[i('K')],rank2[i('L')])     # M83(K2vsL2)
-    save_result('Round of 32',rank1[i('H')],rank2[i('J')])     # M84(H1vsJ2)
+    save_result('Round of 32',rank1[i('H')],rank2[i('J')])      # M84(H1vsJ2)
+    save_result('Round of 32',rank2[i('K')],rank2[i('L')])      # M83(K2vsL2)
     idx = i(qualifying_set['1B'])
-    save_result('Round of 32',rank1[i('B')],rank3[idx])        # M85(B1vsE3/F3/G3/I3/J3)
+    save_result('Round of 32',rank1[i('B')],rank3[idx])         # M85(B1vsE3/F3/G3/I3/J3)
     
     # July 3, 2026
     if verbose:
         print('')
         print('📅 July 3, 2026')
-    save_result('Round of 32',rank1[i('J')],rank2[i('H')])     # M86(J1vsH2)
+    save_result('Round of 32',rank2[i('D')],rank2[i('G')])      # M88(D2vsG2)
+    save_result('Round of 32',rank1[i('J')],rank2[i('H')])      # M86(J1vsH2)
     idx = i(qualifying_set['1K'])
-    save_result('Round of 32',rank1[i('K')],rank3[idx])        # M87(K1vsD3/E3/I3/J3/L3)
-    save_result('Round of 32',rank2[i('D')],rank2[i('G')])     # M88(D2vsG2)
+    save_result('Round of 32',rank1[i('K')],rank3[idx])         # M87(K1vsD3/E3/I3/J3/L3)
     
     if verbose:
         print('')
@@ -1244,8 +1244,8 @@ def sim_ro16(teams:list[Country], verbose=True):
     if verbose:
         print('')
         print('📅 July 4, 2026')
-    save_result('Round of 16',teams[1],teams[4])        # M89(M74vsM77)
     save_result('Round of 16',teams[0],teams[2])        # M90(M73vsM75)
+    save_result('Round of 16',teams[1],teams[4])        # M89(M74vsM77)
     
     # July 5, 2026
     if verbose:
@@ -1399,7 +1399,7 @@ def sim_sf(teams:list[Country], verbose=True):
     if verbose:
         print('')
         print('📅 July 15, 2026')
-    save_result('Semifinals',teams[2],teams[3])      # M101(M99vsM100)
+    save_result('Semifinals',teams[2],teams[3])      # M102(M99vsM100)
     
     if verbose:
         print('')
